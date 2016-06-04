@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <!--<div class="date">
+      <span>{{ page.date | date_to_long_string }}</span>
+    </div>-->
+    <div>
+      <p style="margin-bottom:10px"><a href="{{page.codeLink}}" target="_blank">Github repo</a></p>
+      {%if page.codeVideo%}
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe src="{{page.codeVideo}}" allowfullscreen></iframe>
+        </div>
+      {%elsif page.pdfSource%}
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe src="{{page.pdfSource}}"></iframe>
+        </div>
+      {%endif%}
+      {{content}}
+    </div>
+
+  </div>
+</div>
