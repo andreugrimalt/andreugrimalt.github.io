@@ -6,7 +6,7 @@ summary: "Additive synthesis controlled by the difussion equation"
 tags: [processing, gas-diffusion-synth]
 codeLink: "https://github.com/andreugrimalt/diffusion-synth"
 codeVideo: "https://www.youtube.com/embed/BbxJBnPK__c"
-imageSource: "https://i.ytimg.com/vi_webp/BbxJBnPK__c/hqdefault.webp"
+imageSource: "https://i.ytimg.com/vi/BbxJBnPK__c/hqdefault.jpg"
 layout: "post"
 ---
 
