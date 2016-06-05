@@ -9,7 +9,7 @@ imageSource: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Elman_srnn.png
 audioSources: ["https://cdn.rawgit.com/andreugrimalt/biaxial-rnn/master/1_epoch.mp3","https://cdn.rawgit.com/andreugrimalt/biaxial-rnn/master/bach_1.mp3","https://cdn.rawgit.com/andreugrimalt/biaxial-rnn/master/bach_2.mp3","https://cdn.rawgit.com/andreugrimalt/biaxial-rnn/master/Schubert_0.mp3"]
 layout: "post"
 ---
-I borrowed heavily from:
+I borrowed from here:
 <a href="https://github.com/hexahedria/biaxial-rnn-music-composition" target="_blank">https://github.com/hexahedria/biaxial-rnn-music-composition</a>
 <p>More info comming soon</p>
 <div class="row">
