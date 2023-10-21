@@ -8,7 +8,8 @@ const startAudio = async () => {
 
 // add button
 const canvas = document.getElementById("mainCanvas");
-canvas.addEventListener("click", () => {
+canvas.addEventListener("click", function handler() {
   startAudio();
   acquireWakeLock();
+  canvas.removeEventListener("click", handler);
 });
