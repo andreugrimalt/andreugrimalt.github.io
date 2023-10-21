@@ -17,6 +17,11 @@ const startAudio = async () => {
 
 // add button
 const button = document.createElement("button");
+const audioPlayer = document.createElement("audio");
+audioPlayer.controls = true;
+audioPlayer.src = "./emptyAudio.mp3";
+audioPlayer.addEventListener("ended", () => audioPlayer.play());
 button.innerHTML = "start audio worklet";
 button.addEventListener("click", startAudio);
 document.body.appendChild(button);
+document.body.appendChild(audioPlayer);
