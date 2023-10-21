@@ -8,20 +8,6 @@
   <body>
     <script>
       const webLockDiv = document.createElement("div");
-
-      (async () => {
-        let wakeLock = null;
-
-        // create an async function to request a wake lock
-        try {
-          wakeLock = await navigator.wakeLock.request("screen");
-          webLockDiv.textContent = "Wake Lock is active!";
-        } catch (err) {
-          // The Wake Lock request has failed - usually system related, such as battery.
-          webLockDiv.textContent = `${err.name}, ${err.message}`;
-        }
-      })();
-
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       const audioContext = new AudioContext();
 
@@ -53,6 +39,19 @@
       });
 
       document.body.append(webLockDiv);
+
+      setTimeout(async () => {
+        let wakeLock = null;
+
+        // create an async function to request a wake lock
+        try {
+          wakeLock = await navigator.wakeLock.request("screen");
+          webLockDiv.textContent = "Wake Lock is active!";
+        } catch (err) {
+          // The Wake Lock request has failed - usually system related, such as battery.
+          webLockDiv.textContent = `${err.name}, ${err.message}`;
+        }
+      }, 3000);
     </script>
     <audio
       src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
