@@ -1,76 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="height: 100%; width: 100%; overflow: hidden">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>audio-test</title>
+    <title>Webpack App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body>
-    <script>
-      const webLockDiv = document.createElement("div");
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      const audioContext = new AudioContext();
-
-      // Create AudioBuffer and fill with two seconds of white noise.
-      const channels = 2;
-      const frameCount = audioContext.sampleRate * 20.0;
-      const audioBuffer = audioContext.createBuffer(
-        channels,
-        frameCount,
-        audioContext.sampleRate
-      );
-      for (var channel = 0; channel < channels; channel++) {
-        var nowBuffering = audioBuffer.getChannelData(channel);
-        for (var i = 0; i < frameCount; i++) {
-          nowBuffering[i] = Math.random() * 2 - 1;
-        }
-      }
-
-      const button = document.createElement("button");
-      button.textContent = "Play Audio";
-      document.body.append(button);
-
-      button.addEventListener("click", () => {
-        const currentSourceNode = new AudioBufferSourceNode(audioContext, {
-          buffer: audioBuffer,
-        });
-        currentSourceNode.connect(audioContext.destination);
-        currentSourceNode.start();
-      });
-
-      document.body.append(webLockDiv);
-
-      let wakeLock;
-      const acquireWakeLock = async () => {
-        if ("wakeLock" in navigator) {
-          try {
-            wakeLock = await navigator.wakeLock.request("screen");
-            webLockDiv.textContent = "Wake lock is activated.";
-          } catch (err) {
-            webLockDiv.textContent = `${err.name}: ${err.message}`;
-          }
-        } else {
-          webLockDiv.textContent = "no wake lock";
-        }
-      };
-      const releaseWakeLock = async () => {
-        if ("wakeLock" in navigator) {
-          try {
-            wakeLock.release();
-            webLockDiv.textContent = "Wake lock has been released.";
-          } catch (err) {
-            webLockDiv.textContent = `${err.name}: ${err.message}`;
-          }
-        } else {
-          webLockDiv.textContent = "no wake lock";
-        }
-      };
-    </script>
-    <audio
-      src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
-      crossorigin="anonymous"
-    ></audio>
-    <button onclick="acquireWakeLock()">Activate lock</button>
-    <button onclick="releaseWakeLock()">Release lock</button>
+  <body
+    style="margin: 0; padding: 0; height: 100%; width: 100%"
+    onclick="this.requestFullscreen()"
+  >
+    <canvas id="mainCanvas" style="height: 100%; width: 100%"></canvas>
+    <script src="lodash.js"></script>
+    <script src="index.js" type="module"></script>
+    <script src="colours.js"></script>
   </body>
 </html>
