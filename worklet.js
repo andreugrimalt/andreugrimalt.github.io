@@ -25,7 +25,7 @@ class NoiseGenerator extends AudioWorkletProcessor {
       }
 
       for (let i = 0; i < channel.length; i++) {
-        channel[i] = 0.05 * noise[i];
+        channel[i] = noise[i];
       }
     });
     return true;
