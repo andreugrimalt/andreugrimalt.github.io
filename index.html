@@ -40,22 +40,33 @@
 
       document.body.append(webLockDiv);
 
-      setTimeout(async () => {
-        let wakeLock = null;
-
-        // create an async function to request a wake lock
-        try {
-          wakeLock = await navigator.wakeLock.request("screen");
-          webLockDiv.textContent = "Wake Lock is active!";
-        } catch (err) {
-          // The Wake Lock request has failed - usually system related, such as battery.
-          webLockDiv.textContent = `${err.name}, ${err.message}`;
+      let wakeLock;
+      const acquireWakeLock = async () => {
+        if ("wakeLock" in navigator) {
+          try {
+            wakeLock = await navigator.wakeLock.request("screen");
+            webLockDiv.textContent = "Wake lock is activated.";
+          } catch (err) {
+            webLockDiv.textContent = `${err.name}: ${err.message}`;
+          }
         }
-      }, 3000);
+      };
+      const releaseWakeLock = async () => {
+        if ("wakeLock" in navigator) {
+          try {
+            wakeLock.release();
+            webLockDiv.textContent = "Wake lock has been released.";
+          } catch (err) {
+            webLockDiv.textContent = `${err.name}: ${err.message}`;
+          }
+        }
+      };
     </script>
     <audio
       src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
       crossorigin="anonymous"
     ></audio>
+    <button onclick="acquireWakeLock()">Activate lock</button>
+    <button onclick="releaseWakeLock()">Release lock</button>
   </body>
 </html>
