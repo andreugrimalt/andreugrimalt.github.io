@@ -1,12 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Webpack App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>audio-test</title>
   </head>
   <body>
-    <script src="lodash.js"></script>
-    <script src="index.js"></script>
+    <script>
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const audioContext = new AudioContext();
+
+      // Create AudioBuffer and fill with two seconds of white noise.
+      const channels = 2;
+      const frameCount = audioContext.sampleRate * 2.0;
+      const audioBuffer = audioContext.createBuffer(
+        channels,
+        frameCount,
+        audioContext.sampleRate
+      );
+      for (var channel = 0; channel < channels; channel++) {
+        var nowBuffering = audioBuffer.getChannelData(channel);
+        for (var i = 0; i < frameCount; i++) {
+          nowBuffering[i] = Math.random() * 2 - 1;
+        }
+      }
+
+      const button = document.createElement("button");
+      button.textContent = "Play Audio";
+      document.body.append(button);
+
+      button.addEventListener("click", () => {
+        const currentSourceNode = new AudioBufferSourceNode(audioContext, {
+          buffer: audioBuffer,
+        });
+        currentSourceNode.connect(audioContext.destination);
+        currentSourceNode.start();
+      });
+    </script>
+    <audio
+      src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
+      crossorigin="anonymous"
+    ></audio>
   </body>
 </html>
