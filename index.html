@@ -49,6 +49,8 @@
           } catch (err) {
             webLockDiv.textContent = `${err.name}: ${err.message}`;
           }
+        } else {
+          webLockDiv.textContent = "no wake lock";
         }
       };
       const releaseWakeLock = async () => {
@@ -59,6 +61,8 @@
           } catch (err) {
             webLockDiv.textContent = `${err.name}: ${err.message}`;
           }
+        } else {
+          webLockDiv.textContent = "no wake lock";
         }
       };
     </script>
