@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 const noise = new Array(128).fill(0);
 noise[0] = Math.random() * 2 - 1;
 

@@ -1,8 +1,6 @@
-import noiseGeneratorUrl from "worklet-loader!./noise-generator.js";
-
 const startAudio = async () => {
   const context = new AudioContext();
-  await context.audioWorklet.addModule(noiseGeneratorUrl);
+  await context.audioWorklet.addModule("./worklet.js", { credentials: "omit" });
   const modulator = new OscillatorNode(context);
   const modGain = new GainNode(context);
   const noiseGenerator = new AudioWorkletNode(context, "noise-generator");
